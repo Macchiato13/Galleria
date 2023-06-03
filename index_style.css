@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,300&family=Satisfy&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Lato';
+  color: white;
+  background: black;
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato';
+    color: white;
+    background: black;
+    overflow: hidden;
+}
+  
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 2s ease-in-out; /* Updated transition duration to 3 seconds */
+  }
+  
+  .main-section {
+    transition-delay: 6s; /* Delay the transition for 3 seconds */
+  }
+  
+  .guest-section {
+    opacity: 0;
+  }
+  
+  .fade-in {
+    opacity: 1;
+  }
+  
+  /* Rest of the CSS styles */
+  /* ... */
+  
+
+.main-frame {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 22.5cm;
+  width: 38.14cm;
+  background-image: url(image/index/frame1.png);
+  background-size: cover;
+  background-position: center;
+  animation: fadeInMainFrame 1s ease-in forwards;
+}
+
+.frame {
+  display: flex;
+  position: relative;
+  margin: 0;
+  height: 9cm;
+  width: 17.2cm;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  background-image: url(image/index/frame2.png);
+  background-position: center;
+  background-size: cover;
+  animation: fadeInFrame 3s ease-in forwards;
+}
+
+.title {
+  animation: fadeInTitle 3s ease-in forwards;
+  animation-delay: 1s; /* Add a delay to start after the fadeInMainFrame animation */
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    font-family: 'Lato';
+    font-weight: 300;
+    font-size: 41px;
+    word-spacing: 3px;
+}
+
+.text1 {
+    font-family: 'Lato';
+    font-weight: 300;
+    font-size: 25px;
+}
+
+
+@keyframes fadeInMainFrame {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInFrame {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInTitle {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.guest-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+  }
+  
+  .title {
+    margin-bottom: 1em;
+    font-family: 'Lato';
+    font-weight: 200;
+    font-size: 46px;
+  }
+  .title-par {
+    margin-bottom: 2em;
+    font-family: 'Lato';
+    font-weight: 100;
+    font-size: 26px;
+  }
+  
+  .boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+    font-family: 'Satisfy';
+    font-size: 30px ;
+  }
+  
+  .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 100px;
+    margin: 1.5em;
+    border-radius: 20px;
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  }
+  .box:hover {
+    background-color: rgba(255, 204, 204, 0.686);
+    color: black;
+  }
+  
+  .content-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8em;
+    background-color: rgba(211, 211, 211, 0.275);
+    color: rgb(255, 237, 237);
+    width: 500px;
+    border-radius: 35px;
+  }
+  
+  .entitle {
+    margin-bottom: 0.5em;
+    text-align: center;
+  }
+  
+  .paragraph {
+    text-align: center;
+    font-weight: 300;
+  }
+  
