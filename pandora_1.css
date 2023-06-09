@@ -132,23 +132,22 @@ html, body {
 .indicator-bullet .bullet-text span {
     padding: 0 10px;
 }
-#section-indicator[data-aos="fade-left"] {
+#section-indicator {
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transform: translateX(-50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
   
-  #section-indicator[data-aos="fade-left"].aos-animate {
+  #section-indicator.fade-left.aos-animate {
     opacity: 1;
+    transform: translateX(0);
   }
   
-  #section-indicator[data-aos="fade-right"] {
-    opacity: 1;
-    transition: opacity 0.5s ease;
-  }
-  
-  #section-indicator[data-aos="fade-right"].aos-animate {
+  #section-indicator.fade-right.aos-animate {
     opacity: 0;
+    transform: translateX(50px);
   }
+  
   
 /* Indicators*/
 /* section1 */
