@@ -23,6 +23,13 @@ window.addEventListener("load", function() {
 
     // Call handleIndicatorVisibility after preloader removal
     handleIndicatorVisibility();
+
+    // Initialize AOS
+    AOS.init({
+      once: true, // Only animate elements once
+      offset: 50, // Offset (in pixels) from the top of the element to start the animation
+      duration: 800, // Duration of the animation (in milliseconds)
+    });
   }, 1400); // Total delay from start to end of preloader animation
 });
 
