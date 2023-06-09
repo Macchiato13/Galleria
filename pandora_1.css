@@ -132,32 +132,28 @@ html, body {
 .indicator-bullet .bullet-text span {
     padding: 0 10px;
 }
-#preloader.fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  
-  #section-indicator.fade-left {
+.fade-left {
     opacity: 0;
     transform: translateX(-50px);
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
   
-  #section-indicator.fade-left.fade-in {
+  .fade-left.fade-in {
     opacity: 1;
     transform: translateX(0);
   }
   
-  #section-indicator.fade-right {
+  .fade-right {
     opacity: 1;
     transform: translateX(0);
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
   
-  #section-indicator.fade-right.fade-out {
+  .fade-right.fade-out {
     opacity: 0;
     transform: translateX(50px);
   }
+  
 /* Indicators*/
 /* section1 */
 .section {
