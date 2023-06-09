@@ -26,10 +26,6 @@ window.addEventListener("load", function() {
   }, 1400); // Total delay from start to end of preloader animation
 });
 
-
-// Initial visibility check
-handleIndicatorVisibility();
-
 function handleScroll() {
   // Delay invoking handleIndicatorVisibility to throttle the scroll event
   clearTimeout(window.scrollTimeout);
