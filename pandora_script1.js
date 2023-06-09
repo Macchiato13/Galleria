@@ -38,134 +38,36 @@ function handleScroll() {
   }, 100);
 }
 
-function handleIndicatorVisibility() {
-  var sectionIndicator = document.getElementById("section-indicator");
-  var sectionIndicatorBullets = document.querySelectorAll(".indicator-bullet");
-  var currentSection = getCurrentSection();
-
-  // Hide all bullets initially
-  sectionIndicatorBullets.forEach(function(bullet) {
-    bullet.style.display = "none";
-    bullet.style.opacity = "1"; // Reset opacity
-    bullet.classList.remove("previous", "next", "active"); // Remove classes
-  });
-
-  if (currentSection && currentSection.id !== "section1") {
-    sectionIndicator.style.display = "block";
-
-    // Get the index of the current section
-    var currentIndex = Array.from(sectionIndicatorBullets).findIndex(function(bullet) {
-      return bullet.getAttribute("data-target") === currentSection.id;
-    });
-
-    if (currentIndex > -1) {
-      // Show the current bullet
-      sectionIndicatorBullets[currentIndex].style.display = "block";
-      sectionIndicatorBullets[currentIndex].classList.add("active");
-
-      // Calculate the start and end indices for visible bullets
-      var maxVisibleBullets = 3;
-      var startIndex = Math.max(0, currentIndex - 1);
-      var endIndex = Math.min(sectionIndicatorBullets.length - 1, startIndex + maxVisibleBullets - 1);
-
-      // Show the previous bullets with 40% opacity
-      for (var i = startIndex; i < currentIndex; i++) {
-        sectionIndicatorBullets[i].style.display = "block";
-        sectionIndicatorBullets[i].classList.add("previous");
-      }
-
-      // Show the next bullets with 40% opacity
-      for (var j = currentIndex + 1; j <= endIndex; j++) {
-        sectionIndicatorBullets[j].style.display = "block";
-        sectionIndicatorBullets[j].classList.add("next");
-      }
-    }
-  } else {
-    sectionIndicator.style.display = "none";
-  }
-
-  handleSectionVisibility();
-}
-
-// Call handleIndicatorVisibility() initially to set the initial state
-handleIndicatorVisibility();
-
-// Call handleIndicatorVisibility() on window resize and scroll events
-window.addEventListener("resize", handleIndicatorVisibility);
-window.addEventListener("scroll", handleIndicatorVisibility);
-
-function handleIndicatorVisibility() {
-  var sectionIndicator = document.getElementById("section-indicator");
-  var sectionIndicatorBullets = document.querySelectorAll(".indicator-bullet");
-  var currentSection = getCurrentSection();
-
-  // Hide all bullets initially
-  sectionIndicatorBullets.forEach(function(bullet) {
-    bullet.style.display = "none";
-    bullet.style.opacity = "1"; // Reset opacity
-    bullet.classList.remove("previous", "next", "active"); // Remove classes
-  });
-
-  if (currentSection && currentSection.id !== "section1") {
-    sectionIndicator.style.display = "block";
-
-    // Get the index of the current section
-    var currentIndex = Array.from(sectionIndicatorBullets).findIndex(function(bullet) {
-      return bullet.getAttribute("data-target") === currentSection.id;
-    });
-
-    if (currentIndex > -1) {
-      // Show the current bullet
-      sectionIndicatorBullets[currentIndex].style.display = "block";
-      sectionIndicatorBullets[currentIndex].classList.add("active");
-
-      // Calculate the start and end indices for visible bullets
-      var maxVisibleBullets = 3;
-      var startIndex = Math.max(0, currentIndex - 1);
-      var endIndex = Math.min(sectionIndicatorBullets.length - 1, startIndex + maxVisibleBullets - 1);
-
-      // Show the previous bullets with 40% opacity
-      for (var i = startIndex; i < currentIndex; i++) {
-        sectionIndicatorBullets[i].style.display = "block";
-        sectionIndicatorBullets[i].classList.add("previous");
-      }
-
-      // Show the next bullets with 40% opacity
-      for (var j = currentIndex + 1; j <= endIndex; j++) {
-        sectionIndicatorBullets[j].style.display = "block";
-        sectionIndicatorBullets[j].classList.add("next");
-      }
-    }
-  } else {
-    sectionIndicator.style.display = "none";
-  }
-
-  handleSectionVisibility();
-}
-
-// Call handleIndicatorVisibility() initially to set the initial state
-handleIndicatorVisibility();
-
-// Call handleIndicatorVisibility() on window resize and scroll events
-window.addEventListener("resize", handleIndicatorVisibility);
-window.addEventListener("scroll", handleIndicatorVisibility);
-
 function handleSectionVisibility() {
-  var sectionIndicator = document.getElementById("section-indicator");
+  var sectionContainer = document.getElementById("section-indicator");
   var currentSection = getCurrentSection();
 
   if (currentSection && currentSection.id !== "section1") {
-    sectionIndicator.style.display = "block";
-    sectionIndicator.classList.add("fade-left");
-    sectionIndicator.classList.remove("fade-right");
+    sectionContainer.style.display = "block";
+    sectionContainer.setAttribute("data-aos", "fade-left");
+    sectionContainer.setAttribute("data-aos-delay", "100");
+    sectionContainer.setAttribute("data-aos-duration", "500");
+    sectionContainer.setAttribute("data-aos-once", "true");
+    AOS.refresh();
   } else {
-    sectionIndicator.classList.remove("fade-left");
-    sectionIndicator.classList.add("fade-right");
+    sectionContainer.setAttribute("data-aos", "fade-right");
+    sectionContainer.setAttribute("data-aos-delay", "100");
+    sectionContainer.setAttribute("data-aos-duration", "500");
+    sectionContainer.setAttribute("data-aos-once", "true");
     setTimeout(function() {
-      sectionIndicator.style.display = "none";
+      sectionContainer.style.display = "none";
     }, 500); // Adjust the delay if needed
+    AOS.refresh();
   }
 }
+
+
+// Call handleIndicatorVisibility() initially to set the initial state
+handleIndicatorVisibility();
+
+// Call handleIndicatorVisibility() on window resize and scroll events
+window.addEventListener("resize", handleIndicatorVisibility);
+window.addEventListener("scroll", handleIndicatorVisibility);
 
 function getCurrentSection() {
   var sections = document.getElementsByClassName("section");
