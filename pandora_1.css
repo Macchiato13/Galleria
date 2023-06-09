@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,300&family=Satisfy&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    color: #413F31;
+    background: #0D0D0D;
+    font-family: 'Lato';
+    height: 100%;
+    scroll-snap-type: y proximity;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+html, body {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+[data-aos="prelude"] {
+    opacity: 0;
+    transition-property: opacity;
+  
+    &.aos-animate {
+      opacity: 1;
+    }
+}
+/* Content */
+.section {
+    scroll-snap-align: center;
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    background-image: url(UI/Square-ling\ Border@2x.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity 0.4s ease-in-out, background-color 0.4s ease-in-out; /* Add background-color transition */
+    background-color: transparent; /* Set initial background color */
+}
+  
+.section.visible {
+    opacity: 1;
+    background-color: #C3BE94; /* Set the desired background color */
+}
+.preloader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: opacity 0.8s ease-in; /* Add transition property */
+    opacity: 1; /* Set initial opacity to 1 */
+    pointer-events: auto; /* Enable pointer events to allow interaction with preloader */
+}
+.layer1, .layer2 {
+   position: absolute;
+}
+.layer1 {
+   z-index: 2; /* Place layer1 in front */
+   /* Additional styling for layer1 */
+}
+.layer2 {
+   z-index: 1; /* Place layer2 in the back */
+   /* Additional styling for layer2 */
+   display: block;
+}
+
+/* Contents */
+/* Indicators*/
+#section-indicator {
+    position: fixed;
+    display: flex;
+    top: 20%;
+    right: 0.5%;
+    transform: translateX(-50%);
+    z-index: 999;
+    width: 142px;
+    height: 122px;
+}
+#section-indicator.visible {
+    opacity: 1;
+    visibility: visible;
+}
+.indicator-link {
+    display: block;
+    margin-bottom: 20px;
+}
+.indicator-icon {
+    width: 100%;
+    height: auto;
+}
+.indicator-bullets {
+    display: flex;
+    flex-direction: column;
+}
+  
+.indicator-bullet .bullet-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #3d3a2e7d;
+    font-size: 20px;
+    word-spacing: 3px;
+    font-weight: bold;
+    flex-grow: 1;
+    margin: 10px 0px;
+    padding: 0px 12px;
+  }
+  
+  
+  .indicator-bullet.active {
+    background-color: #918e6eef;
+    color: #3d3a2e;
+    box-shadow: 3px 4px 7px #3d3a2e;
+    opacity: 1;
+}
+  
+  .indicator-bullet.previous,
+  .indicator-bullet.next {
+    opacity: 0.5;
+}
+  
+/* Add spacing to the bullet text */
+.indicator-bullet .bullet-text span {
+    padding: 0 10px;
+}
+.fade-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .fade-left.fade-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .fade-right {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .fade-right.fade-out {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  
+/* Indicators*/
+/* section1 */
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#section1 {
+    background-image: url(UI/Square-ling\ Border\ 1.png);
+    background-position: center;
+}
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 76px;
+    margin: 0;
+}
+.lining1 {
+    align-items: center;
+    justify-content: center;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+.paragraph1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.h1 {
+    font-size: 57px;
+    letter-spacing: 2px;
+}
+.h1x {
+    font-size: 38px;
+    letter-spacing: 2px;
+}
+.author {
+    margin-top: 40px;
+    word-spacing: 5px;
+}
