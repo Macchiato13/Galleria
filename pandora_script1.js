@@ -8,20 +8,20 @@ window.addEventListener("load", function () {
 });
 
 // Section Indicator Animation
-function handleSectionVisibility() {
-  var sectionIndicator = document.getElementById("section-indicator");
+function handleIndicatorVisibility() {
+  var sectionContainer = document.getElementById("section-container");
   var currentSection = getCurrentSection();
 
   if (currentSection && currentSection.id !== "section1") {
-    sectionIndicator.style.display = "block";
-    sectionIndicator.classList.add("fade-left");
-    sectionIndicator.classList.remove("fade-right");
+    sectionContainer.style.display = "block";
+    sectionContainer.classList.add("fade-left");
+    sectionContainer.classList.remove("fade-right");
   } else {
-    sectionIndicator.classList.remove("fade-left");
-    sectionIndicator.classList.add("fade-right");
-    setTimeout(function () {
-      sectionIndicator.style.display = "none";
-    }, 500);
+    sectionContainer.classList.remove("fade-left");
+    sectionContainer.classList.add("fade-right");
+    setTimeout(function() {
+      sectionContainer.style.display = "none";
+    }, 500); // Adjust the delay if needed
   }
 }
 
@@ -52,29 +52,12 @@ function smoothScroll(target, duration) {
   requestAnimationFrame(animation);
 }
 
-// Get the current visible section
-function getCurrentSection() {
-  var sections = document.getElementsByClassName("section");
-  var scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-  var windowHeight = window.innerHeight;
-  var documentHeight = document.documentElement.scrollHeight;
-  var currentSection = null;
-
-  for (var i = 0; i < sections.length; i++) {
-    var section = sections[i];
-    var sectionTop = section.offsetTop;
-    var sectionHeight = section.offsetHeight;
-    var sectionBottom = sectionTop + sectionHeight;
-
-    var isSectionVisible = sectionTop <= scrollPosition + (windowHeight / 2) && sectionBottom >= scrollPosition + (windowHeight / 2);
-
-    if (isSectionVisible) {
-      currentSection = section;
-      break;
-    }
-  }
-
-  return currentSection;
+ requestAnimationFrame(animation);
+  
+  // Call handleIndicatorVisibility after scrolling
+  setTimeout(function() {
+    handleIndicatorVisibility();
+  }, duration);
 }
 
 // Event listeners
