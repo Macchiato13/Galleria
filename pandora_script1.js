@@ -30,7 +30,7 @@ window.addEventListener("load", function() {
       offset: 50, // Offset (in pixels) from the top of the element to start the animation
       duration: 800, // Duration of the animation (in milliseconds)
     });
-  }, 1400); // Total delay from start to end of preloader animation
+  }, 1600); // Total delay from start to end of preloader animation
 });
 
 function handleScroll() {
@@ -87,7 +87,29 @@ function handleIndicatorVisibility() {
     sectionIndicator.style.display = "none";
   }
 
-  handleSectionVisibility();
+  handleSectionVisibility(currentSection);
+}
+
+function handleSectionVisibility(currentSection) {
+  var sections = document.getElementsByClassName("section");
+
+  // Loop through all sections
+  for (var i = 0; i < sections.length; i++) {
+    var section = sections[i];
+
+    if (section === currentSection) {
+      if (section.id === "section1") {
+        // Fade out the current section
+        section.classList.add("fade-out");
+      } else {
+        // Fade in other sections
+        section.classList.remove("fade-out");
+      }
+    } else {
+      // Fade in other sections
+      section.classList.remove("fade-out");
+    }
+  }
 }
 
 // Call handleIndicatorVisibility() initially to set the initial state
@@ -121,6 +143,8 @@ function getCurrentSection() {
   return currentSection;
 }
 
+
+
 // Smooth scrolling effect
 function smoothScroll(target, duration) {
   var targetElement = document.querySelector(target);
@@ -147,3 +171,4 @@ function smoothScroll(target, duration) {
 
   requestAnimationFrame(animation);
 }
+
