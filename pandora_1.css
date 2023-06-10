@@ -11,7 +11,7 @@ html, body {
     background: #0D0D0D;
     font-family: 'Lato';
     height: 100%;
-    scroll-snap-type: y proximity;
+    scroll-snap-type: y;
 }
 ::-webkit-scrollbar {
     display: none;
@@ -30,7 +30,8 @@ html, body {
 }
 /* Content */
 .section {
-    scroll-snap-align: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
     width: 100%;
     height: 100vh;
     opacity: 0;
@@ -73,35 +74,43 @@ html, body {
 }
 
 /* Contents */
-/* Indicators*/
+/* Indicators */
 #section-indicator {
     position: fixed;
     display: flex;
     top: 20%;
     right: 0.5%;
-    transform: translateX(-50%);
     z-index: 999;
-    width: 142px;
+    width: 152px;
     height: 122px;
-}
-#section-indicator.visible {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  #section-indicator.visible {
     opacity: 1;
     visibility: visible;
-}
-.indicator-link {
+  }
+  
+  .indicator-link {
     display: block;
     margin-bottom: 20px;
-}
-.indicator-icon {
-    width: 100%;
+  }
+  
+  .indicator-icon {
+    width: 90%;
     height: auto;
-}
-.indicator-bullets {
+    align-self: center;
+    justify-self: center;
+  }
+  
+  .indicator-bullets {
     display: flex;
     flex-direction: column;
-}
+  }
   
-.indicator-bullet .bullet-text {
+  .indicator-bullet .bullet-text {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,72 +121,47 @@ html, body {
     font-weight: bold;
     flex-grow: 1;
     margin: 10px 0px;
-    padding: 0px 12px;
+    padding: 0px 15px;
   }
   
+  /* Add spacing to the bullet text */
+  .indicator-bullet .bullet-text span {
+    padding: 0 10px;
+  }
+  
+  #section-indicator.fade-in-left {
+    opacity: 1;
+    transform: translateX(-60px);
+  }
+  
+  #section-indicator.fade-out-right {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  
+  #section-indicator.fade-out-right .indicator-bullet {
+    opacity: 0.4;
+    transition: opacity 0.6s ease;
+  }
+  
+  #section-indicator.fade-out-right .indicator-bullet.active {
+    opacity: 1;
+  }
   
   .indicator-bullet.active {
-    background-color: #918e6eef;
+    background-color: #918e6e;
     color: #3d3a2e;
     box-shadow: 3px 4px 7px #3d3a2e;
     opacity: 1;
-}
-  
-  .indicator-bullet.previous,
-  .indicator-bullet.next {
-    opacity: 0.5;
-}
-  
-/* Add spacing to the bullet text */
-.indicator-bullet .bullet-text span {
-    padding: 0 10px;
-}
-#section-indicator {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-  
-#section-indicator.fade-left.aos-animate {
-    opacity: 1;
-    transform: translateX(0);
-}
-  
-#section-indicator.fade-right.aos-animate {
-    opacity: 0;
-    transform: translateX(50px);
-}
-@keyframes fade-left {
-    from {
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-}
-  
-.fade-left {
-    animation: fade-left 0.5s ease-out forwards;
-}
-@keyframes fade-out {
-  from {
-    opacity: 1;
-    transform: translateX(0);
   }
-  to {
-    opacity: 0;
-    transform: translateX(50px);
+  #section-indicator.fade-out-right .indicator-bullet.previous,
+  #section-indicator.fade-out-right .indicator-bullet.next {
+    opacity: 0.4;
   }
-}
-
-.fade-out {
-  animation: fade-out 0.5s ease-out forwards;
-}
-
+  .indicator-bullet.previous, .indicator-bullet.next {
+    opacity: 0.4;
+  }
   
-/* Indicators*/
 /* section1 */
 .section {
     display: flex;
