@@ -154,8 +154,8 @@ function handleIndicatorVisibility() {
   });
 
   if (currentSection && currentSection.id !== "section1") {
-    sectionIndicator.classList.remove("fade-out-right");
-    sectionIndicator.classList.add("fade-in-left");
+    sectionIndicator.classList.remove("get-out");
+    sectionIndicator.classList.add("get-in");
 
     var currentIndex = Array.from(sectionIndicatorBullets).findIndex(function (bullet) {
       return bullet.getAttribute("data-target") === currentSection.id;
@@ -180,7 +180,7 @@ function handleIndicatorVisibility() {
       }
     }
   } else {
-    sectionIndicator.classList.add("fade-out-right");
+    sectionIndicator.classList.add("get-out");
   }
 }
 
