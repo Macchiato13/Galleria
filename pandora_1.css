@@ -87,39 +87,36 @@ html, body {
     transform: translateX(100%);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  
-  #section-indicator.visible {
-    opacity: 1;
-    visibility: visible;
+  .indicator-content {
+    position: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  
   .indicator-link {
-    display: block;
+    display: flex;
     margin-bottom: 20px;
+    justify-content: center;
   }
-  
   .indicator-icon {
-    width: 90%;
+    width: 80%;
     height: auto;
-    align-self: center;
-    justify-self: center;
   }
   
   .indicator-bullets {
     display: flex;
     flex-direction: column;
   }
-  
+
   .indicator-bullet .bullet-text {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #3d3a2e7d;
+    color: #3d3a2e;
     font-size: 20px;
     word-spacing: 3px;
     font-weight: bold;
-    flex-grow: 1;
     margin: 10px 0px;
     padding: 0px 15px;
   }
@@ -129,23 +126,14 @@ html, body {
     padding: 0 10px;
   }
   
-  #section-indicator.fade-in-left {
+  #section-indicator.get-in {
     opacity: 1;
     transform: translateX(-60px);
   }
   
-  #section-indicator.fade-out-right {
+  #section-indicator.get-out {
     opacity: 0;
     transform: translateX(100%);
-  }
-  
-  #section-indicator.fade-out-right .indicator-bullet {
-    opacity: 0.4;
-    transition: opacity 0.6s ease;
-  }
-  
-  #section-indicator.fade-out-right .indicator-bullet.active {
-    opacity: 1;
   }
   
   .indicator-bullet.active {
@@ -153,10 +141,6 @@ html, body {
     color: #3d3a2e;
     box-shadow: 3px 4px 7px #3d3a2e;
     opacity: 1;
-  }
-  #section-indicator.fade-out-right .indicator-bullet.previous,
-  #section-indicator.fade-out-right .indicator-bullet.next {
-    opacity: 0.4;
   }
   .indicator-bullet.previous, .indicator-bullet.next {
     opacity: 0.4;
