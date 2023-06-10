@@ -23,13 +23,114 @@ window.addEventListener("load", function() {
 
     // Call handleIndicatorVisibility after preloader removal
     handleIndicatorVisibility();
+  }, 1600); // Total delay from start to end of preloader animation
+});
 
-    // Initialize AOS
-    AOS.init({
-      once: true, // Only animate elements once
-      offset: 50, // Offset (in pixels) from the top of the element to start the animation
-      duration: 800, // Duration of the animation (in milliseconds)
-    });
+function handleScroll() {
+  // Delay invoking handleIndicatorVisibility to throttle the scroll event
+  clearTimeout(window.scrollTimeout);
+  window.scrollTimeout = setTimeout(function() {
+    handleIndicatorVisibility();
+  }, 100);
+}
+
+window.addEventListener("load", function() {
+  // Restore the scroll position
+  var scrollPosition = sessionStorage.getItem("scrollPosition");
+  window.scrollTo(0, scrollPosition);
+
+  // Remove preloader after animation finishes
+  setTimeout(function() {
+    var preloader = document.getElementById("preloader");
+    preloader.style.opacity = "0"; /* Set opacity to 0 for smooth transition */
+    preloader.style.pointerEvents = "none"; /* Disable pointer events to prevent interaction */
+
+    // Reveal all sections
+    var sections = document.getElementsByClassName("section");
+    for (var i = 0; i < sections.length; i++) {
+      sections[i].classList.add("visible");
+    }
+
+    // Attach scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Return to section1 after refresh
+    window.scrollTo(0, document.getElementById("section1").offsetTop);
+
+    // Call handleIndicatorVisibility after preloader removal
+    handleIndicatorVisibility();
+  }, 1600); // Total delay from start to end of preloader animation
+});
+
+function handleScroll() {
+  // Delay invoking handleIndicatorVisibility to throttle the scroll event
+  clearTimeout(window.scrollTimeout);
+  window.scrollTimeout = setTimeout(function() {
+    handleIndicatorVisibility();
+  }, 100);
+}
+
+window.addEventListener("load", function() {
+  // Restore the scroll position
+  var scrollPosition = sessionStorage.getItem("scrollPosition");
+  window.scrollTo(0, scrollPosition);
+
+  // Remove preloader after animation finishes
+  setTimeout(function() {
+    var preloader = document.getElementById("preloader");
+    preloader.style.opacity = "0"; /* Set opacity to 0 for smooth transition */
+    preloader.style.pointerEvents = "none"; /* Disable pointer events to prevent interaction */
+
+    // Reveal all sections
+    var sections = document.getElementsByClassName("section");
+    for (var i = 0; i < sections.length; i++) {
+      sections[i].classList.add("visible");
+    }
+
+    // Attach scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Return to section1 after refresh
+    window.scrollTo(0, document.getElementById("section1").offsetTop);
+
+    // Call handleIndicatorVisibility after preloader removal
+    handleIndicatorVisibility();
+  }, 1600); // Total delay from start to end of preloader animation
+});
+
+function handleScroll() {
+  // Delay invoking handleIndicatorVisibility to throttle the scroll event
+  clearTimeout(window.scrollTimeout);
+  window.scrollTimeout = setTimeout(function() {
+    handleIndicatorVisibility();
+  }, 100);
+}
+
+window.addEventListener("load", function() {
+  // Restore the scroll position
+  var scrollPosition = sessionStorage.getItem("scrollPosition");
+  window.scrollTo(0, scrollPosition);
+
+  // Remove preloader after animation finishes
+  setTimeout(function() {
+    var preloader = document.getElementById("preloader");
+    preloader.style.opacity = "0"; /* Set opacity to 0 for smooth transition */
+    preloader.style.pointerEvents = "none"; /* Disable pointer events to prevent interaction */
+
+    // Reveal all sections
+    var sections = document.getElementsByClassName("section");
+    for (var i = 0; i < sections.length; i++) {
+      sections[i].classList.add("visible");
+    }
+
+    // Attach scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Return to section1 after refresh
+    window.scrollTo(0, document.getElementById("section1").offsetTop);
+
+    // Call handleIndicatorVisibility after preloader removal
+    handleIndicatorVisibility();
   }, 1600); // Total delay from start to end of preloader animation
 });
 
@@ -46,95 +147,70 @@ function handleIndicatorVisibility() {
   var sectionIndicatorBullets = document.querySelectorAll(".indicator-bullet");
   var currentSection = getCurrentSection();
 
-  // Hide all bullets initially
-  sectionIndicatorBullets.forEach(function(bullet) {
-    bullet.style.display = "none";
-    bullet.style.opacity = "1"; // Reset opacity
-    bullet.classList.remove("previous", "next", "active"); // Remove classes
+  // Reset all bullets to initial state
+  sectionIndicatorBullets.forEach(function (bullet) {
+    bullet.classList.remove("previous", "next", "active");
+    bullet.style.display = "none"; // Hide all bullets initially
   });
 
   if (currentSection && currentSection.id !== "section1") {
-    sectionIndicator.style.display = "block";
+    sectionIndicator.classList.remove("fade-out-right");
+    sectionIndicator.classList.add("fade-in-left");
 
-    // Get the index of the current section
-    var currentIndex = Array.from(sectionIndicatorBullets).findIndex(function(bullet) {
+    var currentIndex = Array.from(sectionIndicatorBullets).findIndex(function (bullet) {
       return bullet.getAttribute("data-target") === currentSection.id;
     });
 
     if (currentIndex > -1) {
-      // Show the current bullet
-      sectionIndicatorBullets[currentIndex].style.display = "block";
       sectionIndicatorBullets[currentIndex].classList.add("active");
 
-      // Calculate the start and end indices for visible bullets
       var maxVisibleBullets = 3;
-      var startIndex = Math.max(0, currentIndex - 1);
+      var startIndex = Math.max(0, currentIndex - Math.floor(maxVisibleBullets / 2));
       var endIndex = Math.min(sectionIndicatorBullets.length - 1, startIndex + maxVisibleBullets - 1);
 
-      // Show the previous bullets with 40% opacity
-      for (var i = startIndex; i < currentIndex; i++) {
-        sectionIndicatorBullets[i].style.display = "block";
-        sectionIndicatorBullets[i].classList.add("previous");
-      }
+      for (var i = startIndex; i <= endIndex; i++) {
+        var bullet = sectionIndicatorBullets[i];
+        bullet.style.display = "flex";
 
-      // Show the next bullets with 40% opacity
-      for (var j = currentIndex + 1; j <= endIndex; j++) {
-        sectionIndicatorBullets[j].style.display = "block";
-        sectionIndicatorBullets[j].classList.add("next");
+        if (i === currentIndex) {
+          bullet.style.opacity = "1";
+        } else {
+          bullet.style.opacity = "0.4";
+        }
       }
     }
   } else {
-    sectionIndicator.style.display = "none";
-  }
-
-  handleSectionVisibility(currentSection);
-}
-
-function handleSectionVisibility(currentSection) {
-  var sections = document.getElementsByClassName("section");
-
-  // Loop through all sections
-  for (var i = 0; i < sections.length; i++) {
-    var section = sections[i];
-
-    if (section === currentSection) {
-      if (section.id === "section1") {
-        // Fade out the current section
-        section.classList.add("fade-out");
-      } else {
-        // Fade in other sections
-        section.classList.remove("fade-out");
-      }
-    } else {
-      // Fade in other sections
-      section.classList.remove("fade-out");
-    }
+    sectionIndicator.classList.add("fade-out-right");
   }
 }
 
-// Call handleIndicatorVisibility() initially to set the initial state
-handleIndicatorVisibility();
-
-// Call handleIndicatorVisibility() on window resize and scroll events
-window.addEventListener("resize", handleIndicatorVisibility);
 window.addEventListener("scroll", handleIndicatorVisibility);
 
 function getCurrentSection() {
   var sections = document.getElementsByClassName("section");
   var scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
   var windowHeight = window.innerHeight;
-  var documentHeight = document.documentElement.scrollHeight;
   var currentSection = null;
 
   for (var i = 0; i < sections.length; i++) {
     var section = sections[i];
     var sectionTop = section.offsetTop;
-    var sectionHeight = section.offsetHeight;
-    var sectionBottom = sectionTop + sectionHeight;
+    var sectionBottom = sectionTop + section.offsetHeight;
 
-    var isSectionVisible = sectionTop <= scrollPosition + (windowHeight / 2) && sectionBottom >= scrollPosition + (windowHeight / 2);
+    // Adjust sectionTop and sectionBottom based on scroll position and window height
+    if (sectionTop > scrollPosition + windowHeight / 2) {
+      sectionBottom = sectionTop + windowHeight;
+    } else if (sectionBottom < scrollPosition + windowHeight / 2) {
+      sectionTop = sectionBottom - windowHeight;
+    }
 
-    if (isSectionVisible) {
+    // Adjust sectionTop and sectionBottom to account for header height (if needed)
+    var header = document.querySelector(".header");
+    var headerHeight = header ? header.offsetHeight : 0;
+    sectionTop -= headerHeight;
+    sectionBottom -= headerHeight;
+
+    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
       currentSection = section;
       break;
     }
@@ -142,7 +218,6 @@ function getCurrentSection() {
 
   return currentSection;
 }
-
 
 
 // Smooth scrolling effect
@@ -158,7 +233,10 @@ function smoothScroll(target, duration) {
     var timeElapsed = currentTime - startTime;
     var scrollY = ease(timeElapsed, startPosition, distance, duration);
     window.scrollTo(0, scrollY);
-    if (timeElapsed < duration) requestAnimationFrame(animation);
+
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    }
   }
 
   // Easing function - easeInOutCubic
@@ -171,4 +249,3 @@ function smoothScroll(target, duration) {
 
   requestAnimationFrame(animation);
 }
-
